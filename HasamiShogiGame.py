@@ -126,7 +126,7 @@ class HasamiShogiGame:
         new_piece = self.get_square_occupant(new_space)
 
         if new_piece != ".":
-            return False
+            return True
 
         current_row, current_column = self.get_row_column(current_space)
         new_row, new_column = self.get_row_column(new_space)
