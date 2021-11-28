@@ -107,7 +107,6 @@ class HasamiShogiGame:
                 elif self._board[row][current_column] == ".":
                     return []
                 current_column += 1
-
         return []
 
     def make_move(self, current_space, new_space):
@@ -166,7 +165,7 @@ class HasamiShogiGame:
     def print_board(self):
         for row in self._board:
             print(*row)
-        return
+        return True
 
 
 # game = HasamiShogiGame()
