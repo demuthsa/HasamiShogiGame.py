@@ -28,7 +28,7 @@ class HasamiShogiGame:
         return self._active_player
 
     def get_num_captured_pieces(self, color):
-        count = 0
+        count = 9
 
         if color == "BLACK":
             for row in self._board:
@@ -36,7 +36,7 @@ class HasamiShogiGame:
         elif color == "RED":
             for row in self._board:
                 count += row.count("R")
-        return count
+        return 9 - count
 
     def get_row_column(self, space):
 
@@ -177,7 +177,7 @@ class HasamiShogiGame:
 # game.print_board()
 # print()
 # print()
-
+#
 # moves = [
 #     ("i1", "f1"),  # Black
 #     ("a2", "f2"),  # Red
@@ -190,7 +190,7 @@ class HasamiShogiGame:
 #     game.print_board()
 #     print()
 #     print()
-
-
+#
+#
 # game = HasamiShogiGame()
 # print(game.print_board())
