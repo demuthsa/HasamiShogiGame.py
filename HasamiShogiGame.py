@@ -144,23 +144,27 @@ class HasamiShogiGame:
                 captured_positions = self.traverse(new_row, new_column, direction, "B", "R")
                 for row, column in captured_positions:
                     self._board[row][column] = "."
+                    return True
 
         elif self._active_player == "RED":
             for direction in directions:
                 captured_positions = self.traverse(new_row, new_column, direction, "R", "B")
                 for row, column in captured_positions:
                     self._board[row][column] = "."
+                    return True
 
         if self._active_player == "RED":
             self._active_player = "BLACK"
             captured = self.get_num_captured_pieces("BLACK")
             if captured <= 1:
                 self._current_state = "RED_WON"
+                return True
         else:
             self._active_player = "RED"
             captured = self.get_num_captured_pieces("RED")
             if captured <= 1:
                 self._current_state = "BLACK_WON"
+                return True
 
     def print_board(self):
         for row in self._board:
