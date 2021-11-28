@@ -28,7 +28,7 @@ class HasamiShogiGame:
         return self._active_player
 
     def get_num_captured_pieces(self, color):
-        count = 9
+        count = 0
 
         if color == "BLACK":
             for row in self._board:
