@@ -200,8 +200,8 @@ class HasamiShogiGame:
 # game = HasamiShogiGame()
 # print(game.print_board())
 
-game = HasamiShogiGame()
-move_result = game.make_move('i6', 'e3')
-print(game.get_active_player())
-print(game.get_square_occupant('a4'))
-print(game.get_game_state())
+# game = HasamiShogiGame()
+# move_result = game.make_move('i6', 'e3')
+# print(game.get_active_player())
+# print(game.get_square_occupant('a4'))
+# print(game.get_game_state())
