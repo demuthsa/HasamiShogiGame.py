@@ -1,6 +1,6 @@
 # Author: Sam DeMuth
 # Date: 24 Nov 2021
-# Description:
+# Description: Hasami
 
 
 class HasamiShogiGame:
