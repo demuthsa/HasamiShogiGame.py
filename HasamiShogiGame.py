@@ -200,10 +200,10 @@ class HasamiShogiGame:
 
 
 
-game = HasamiShogiGame()
-game.print_board()
-print()
-print()
+# game = HasamiShogiGame()
+# game.print_board()
+# print()
+# print()
 
 # moves = [
 #     ("i1", "f1"),  # Black
@@ -224,109 +224,109 @@ print()
 # print(game.print_board())
 
 
-move_result = game.make_move('i1', 'f1') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a2', 'f2') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i3', 'f3') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a4', 'f4') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i2', 'a2') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a1', 'e1') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i4', 'a4') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a6', 'f6') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i6', 'a6') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('e1', 'e2') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i5', 'f5') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a8', 'f8') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i9', 'f9') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a7', 'b7') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i7', 'f7') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('e2', 'b2') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('f1', 'f2') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('b7', 'e7') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('f2', 'c2') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a9', 'b9') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a6', 'd6') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('b9', 'a9') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('d6', 'd7') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a9', 'a8') # Red
-game.print_board()
-print(move_result)
-print()
-
-
-
-
-print(game.get_active_player())
-print(game.get_game_state())
-print(game.get_num_captured_pieces("RED"))
+# move_result = game.make_move('i1', 'f1') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a2', 'f2') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i3', 'f3') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a4', 'f4') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i2', 'a2') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a1', 'e1') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i4', 'a4') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a6', 'f6') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i6', 'a6') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('e1', 'e2') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i5', 'f5') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a8', 'f8') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i9', 'f9') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a7', 'b7') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i7', 'f7') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('e2', 'b2') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('f1', 'f2') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('b7', 'e7') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('f2', 'c2') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a9', 'b9') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a6', 'd6') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('b9', 'a9') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('d6', 'd7') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a9', 'a8') # Red
+# game.print_board()
+# print(move_result)
+# print()
+#
+#
+#
+#
+# print(game.get_active_player())
+# print(game.get_game_state())
+# print(game.get_num_captured_pieces("RED"))
 
 # print(game.get_active_player())
 # print(game.get_square_occupant('a4'))
