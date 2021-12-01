@@ -114,8 +114,15 @@ class HasamiShogiGame:
                 current_column += 1
         return []
 
+    def current_piece(self, space):
+        row, column = self.get_row_column(space)
+
+        return self._board[row][column]
+
+
+
     def make_move(self, current_space, new_space):
-        current_piece = self.get_square_occupant(current_space)
+        current_piece = self.current_piece(current_space)
 
         if self._active_player == "BLACK" and current_piece != "B":
             return False
@@ -123,10 +130,10 @@ class HasamiShogiGame:
         if self._active_player == "RED" and current_piece != "R":
             return False
 
-        new_piece = self.get_square_occupant(new_space)
+        new_piece = self.current_piece(new_space)
 
         if new_piece != ".":
-            return True
+            return False
 
         current_row, current_column = self.get_row_column(current_space)
         new_row, new_column = self.get_row_column(new_space)
@@ -169,26 +176,25 @@ class HasamiShogiGame:
             captured = self.get_num_captured_pieces("RED")
             if captured <= 1:
                 self._current_state = "BLACK_WON"
-
         return True
 
     def print_board(self):
         for row in self._board:
             print(*row)
-        return
+
 
 
 # game = HasamiShogiGame()
-# game.print_board()
-# print()
-# print()
-#
+# # game.print_board()
+# # print()
+# # print()
+# #
 # moves = [
 #     ("i1", "f1"),  # Black
 #     ("a2", "f2"),  # Red
 #     ("i3", "f3"),  # Black
 # ]
-#
+# #
 # for move in moves:
 #     current_space, new_space = move
 #     game.make_move(current_space, new_space)
@@ -198,10 +204,10 @@ class HasamiShogiGame:
 #
 #
 # game = HasamiShogiGame()
-# print(game.print_board())
-
-# game = HasamiShogiGame()
-# move_result = game.make_move('i6', 'e3')
-# print(game.get_active_player())
+# # print(game.print_board())
+# #
+# # # game = HasamiShogiGame()
+# # # move_result = game.make_move('i6', 'e3')
+# # # print(game.get_active_player())
 # print(game.get_square_occupant('a4'))
-# print(game.get_game_state())
+# # # print(game.get_game_state())
