@@ -50,7 +50,7 @@ class HasamiShogiGame:
         row, column = self.get_row_column(space)
 
         if self._board[row][column] == "R":
-            return "Red"
+            return "RED"
         elif self._board[row][column] == "B":
             return "Black"
         else:
