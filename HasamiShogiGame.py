@@ -27,6 +27,16 @@ class HasamiShogiGame:
     def get_game_state(self):
         return self._current_state
 
+    def set_game_state(self):
+        captured = self.get_num_captured_pieces("BLACK")
+        if captured >= 8:
+            self._current_state = "RED_WON"
+        else:
+            captured = self.get_num_captured_pieces("RED")
+            if captured >= 8:
+                self._current_state = "BLACK_WON"
+
+
     def get_active_player(self):
         return self._active_player
 
@@ -122,6 +132,41 @@ class HasamiShogiGame:
                 elif self.get_board()[row][current_column] == ".":
                     return []
                 current_column += 1
+
+        #Check corner captures
+        if self.get_board()[1][2] == "B" and self.get_board()[2][1] == "B":
+                if self.get_board()[1][1] == "R":
+                    result.append(self.get_board()[1][1])
+                    self.get_board()[1][1] = "."
+        if self.get_board()[1][2] == "R" and self.get_board()[2][1] == "R":
+                if self.get_board()[1][1] == "B":
+                    result.append(self.get_board()[1][1])
+                    self.get_board()[1][1] = "."
+        if self.get_board()[1][8] == "B" and self.get_board()[2][9] == "B":
+                if self.get_board()[1][9] == "R":
+                    result.append(self.get_board()[1][9])
+                    self.get_board()[1][9] = "."
+        if self.get_board()[1][2] == "R" and self.get_board()[2][1] == "R":
+                if self.get_board()[1][1] == "B":
+                    result.append(self.get_board()[1][9])
+                    self.get_board()[1][9] = "."
+        if self.get_board()[8][1] == "B" and self.get_board()[9][2] == "B":
+                if self.get_board()[9][1] == "R":
+                    result.append(self.get_board()[9][1])
+                    self.get_board()[9][1] = "."
+        if self.get_board()[8][1] == "R" and self.get_board()[9][2] == "R":
+                if self.get_board()[9][1] == "B":
+                    result.append(self.get_board()[9][1])
+                    self.get_board()[9][1] = "."
+        if self.get_board()[8][9] == "B" and self.get_board()[9][8] == "B":
+                if self.get_board()[9][9] == "R":
+                    result.append(self.get_board()[9][9])
+                    self.get_board()[9][9] = "."
+        if self.get_board()[8][9] == "R" and self.get_board()[9][8] == "R":
+                if self.get_board()[9][9] == "B":
+                    result.append(self.get_board()[9][9])
+                    self.get_board()[9][9] = "."
+
         return []
 
     def current_piece(self, space):
@@ -185,13 +230,13 @@ class HasamiShogiGame:
             self.set_active_player()
             captured = self.get_num_captured_pieces("BLACK")
             if captured >= 8:
-                self._current_state = "RED_WON"
+                self.set_game_state()
 
         else:
             self.set_active_player()
             captured = self.get_num_captured_pieces("RED")
             if captured >= 8:
-                self._current_state = "BLACK_WON"
+                self.set_game_state()
         return True
 
     def print_board(self):
@@ -200,54 +245,39 @@ class HasamiShogiGame:
 
 
 
-# game = HasamiShogiGame()
-# game.print_board()
+game = HasamiShogiGame()
+game.print_board()
 # print()
 # print()
 
-# moves = [
-#     ("i1", "f1"),  # Black
-#     ("a2", "f2"),  # Red
-#     ("i3", "f3"),  # Black
-#     ("i2", "h2"),  # Black
-#     ("i5", "f5"),
-#     ("a1", "c1")
-# ]
-#
-# for move in moves:
-#     current_space, new_space = move
-#     game.make_move(current_space, new_space)
-#     game.print_board()
-#     print()
-#     print()
 
-# print(game.print_board())
-
-
-# move_result = game.make_move('i1', 'f1') # Black
-# game.print_board()
-# print(move_result)
-# print()
-# move_result = game.make_move('a2', 'f2') # Red
-# game.print_board()
-# print(move_result)
-# print()
-# move_result = game.make_move('i3', 'f3') # Black
-# game.print_board()
-# print(move_result)
-# print()
-# move_result = game.make_move('a4', 'f4') # Red
-# game.print_board()
-# print(move_result)
-# print()
-# move_result = game.make_move('i2', 'a2') # Black
-# game.print_board()
-# print(move_result)
-# print()
-# move_result = game.make_move('a1', 'e1') # Red
-# game.print_board()
-# print(move_result)
-# print()
+move_result = game.make_move('i1', 'b1') # Black
+game.print_board()
+print(move_result)
+print()
+move_result = game.make_move('a2', 'f2') # Red
+game.print_board()
+print(move_result)
+print()
+move_result = game.make_move('i2', 'a2') # Black
+game.print_board()
+print(move_result)
+print()
+print(game.get_num_captured_pieces("RED"))
+move_result = game.make_move('a9', 'h9') # Red
+game.print_board()
+print(move_result)
+print()
+move_result = game.make_move('i8', 'h8') # Black
+game.print_board()
+print(move_result)
+print()
+move_result = game.make_move('a8', 'i8') # Red
+game.print_board()
+print(move_result)
+print()
+print(game.get_num_captured_pieces("RED"))
+print(game.get_num_captured_pieces("BLACK"))
 # move_result = game.make_move('i4', 'a4') # Black
 # game.print_board()
 # print(move_result)
