@@ -1,11 +1,18 @@
 # Author: Sam DeMuth
 # Date: 24 Nov 2021
-# Description: Hasami Shogi
+# Description: Write a class named HasamiShogiGame for playing an abstract board game called hasami shogi. We'll be using
+#              the rules for "Variant 1" on the Wikipedia page, including the diagram of the starting position. Custodian
+#              captures may be made on multiple sides (up to 3 sides) of the moved piece. For example if the black piece on
+#              square h6 in the diagram below moves to square c6, then the red pieces at c4, c5, and b6 would be captured.
+#              If instead, the black piece at h6 moves to h1, then the red pieces at e1, f1, g1, and i1 would be captured.
+#              Locations on the board will be specified using "algebraic notation", with rows labeled a-i and rows labeled 1-9
 
 
 class HasamiShogiGame:
+    """A class to represent Hasami Shogi game, played by two players. Black always starts first. Returns True if a move is valid, otherwise returns False. """
 
     def __init__(self):
+        """Constructor for HasamiShogiGame class. Takes no parameters. Initializes the required data members: board, current state of game, and active player. All data members are private."""
         self._board = [
             [" ", 1, 2, 3, 4, 5, 6, 7, 8, 9],
             ["a", "R", "R", "R", "R", "R", "R", "R", "R", "R"],
@@ -22,12 +29,15 @@ class HasamiShogiGame:
         self._active_player = "BLACK"
 
     def get_board(self):
+        """A method that returns the game board"""
         return self._board
 
     def get_game_state(self):
+        """A method that returns the game state"""
         return self._current_state
 
     def set_game_state(self):
+        """A method that sets the game state"""
         captured = self.get_num_captured_pieces("BLACK")
         if captured >= 8:
             self._current_state = "RED_WON"
@@ -38,9 +48,11 @@ class HasamiShogiGame:
 
 
     def get_active_player(self):
+        """A method that returns the active player"""
         return self._active_player
 
     def set_active_player(self):
+        """A method that sets the active player"""
         if self._active_player == "BLACK":
             self._active_player = "RED"
         elif self._active_player == "RED":
@@ -48,6 +60,7 @@ class HasamiShogiGame:
 
 
     def get_num_captured_pieces(self, color):
+        """A method that takes as a parameter a color and returns the number of captured pieces for that color"""
         count = 0
 
         if color == "BLACK":
@@ -59,13 +72,14 @@ class HasamiShogiGame:
         return 9 - count
 
     def get_row_column(self, space):
-
+        """A method that returns the row and column of a given space"""
         row = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i"].index(space[0])
         column = int(space[1])
 
         return row, column
 
     def get_square_occupant(self, space):
+        """A method that returns the occupant of a given space"""
 
         row, column = self.get_row_column(space)
 
@@ -77,13 +91,14 @@ class HasamiShogiGame:
             return None
 
     def set_square_occupant(self, space, piece):
+        """A method that takes as a parameter a space and piece and sets the occupant of a given space"""
 
         row, column = self.get_row_column(space)
 
         self.get_board()[row][column] = piece
 
     def traverse(self, row, column, direction, player, opponent):
-
+        """A method that takes as a parameter a row, column, direction, player, and opponent. This method is used to check for captured pieces"""
         result = []
 
         current_column = column
@@ -170,6 +185,7 @@ class HasamiShogiGame:
         return []
 
     def current_piece(self, space):
+        """A method that takes as a parameter a space and returns current piece """
         row, column = self.get_row_column(space)
 
         return self.get_board()[row][column]
@@ -177,6 +193,7 @@ class HasamiShogiGame:
 
 
     def make_move(self, current_space, new_space):
+        """A method that takes as a parameter current space and new space. This method is used to make an active move. If a move is invalid it will return False"""
         current_piece = self.current_piece(current_space)
 
         if self.get_active_player() == "BLACK" and current_piece != "B":
@@ -203,12 +220,36 @@ class HasamiShogiGame:
         if (current_row != new_row) and (current_column != new_column):
             return False
 
-        ## moving the piece
+        # Register invalid move if pieces in the way
+
+        piece = current_space
+        current_column = int(current_space[1])
+        current_row = ord(current_space[0]) - ord("a") + 1
+        new_column = int(new_space[1])
+        new_row = ord(new_space[0]) - ord("a") + 1
+
+        if current_column > new_column and current_row == new_row:  # Left
+            for i in range(current_column-1, new_column-1, -1):
+                if self.get_board()[current_row][i] != ".":
+                    return False
+        if current_column < new_column and current_row == new_row:  # Right
+            for i in range(current_column+1, new_column+1, 1):
+                if self.get_board()[current_row][i] != ".":
+                    return False
+        if current_row < new_row and current_column == new_column: # Up
+            for i in range(current_row+1, new_row+1, 1):
+                if self.get_board()[i][current_column] != ".":
+                    return False
+        if current_row > new_row and current_column == new_column:  # Down
+            for i in range(current_row-1, new_row-1, -1):
+                if self.get_board()[i][current_column] != ".":
+                    return False
+        # moving the piece
 
         self.set_square_occupant(current_space, ".")
         self.set_square_occupant(new_space, current_piece)
 
-        ### Check if captured
+        # Check if captured
 
         directions = ["up", "down", "left", "right"]
 
@@ -240,44 +281,44 @@ class HasamiShogiGame:
         return True
 
     def print_board(self):
+        """A method used to print the game board"""
         for row in self.get_board():
             print(*row)
 
 
 
-game = HasamiShogiGame()
-game.print_board()
+# game = HasamiShogiGame()
+# game.print_board()
+# # print()
+# # print()
+#
+#
+# move_result = game.make_move('i2', 'b2') # Black
+# game.print_board()
+# print(move_result)
 # print()
+# move_result = game.make_move('a1', 'b1') # Red
+# game.print_board()
+# print(move_result)
 # print()
-
-
-move_result = game.make_move('i1', 'b1') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a2', 'f2') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i2', 'a2') # Black
-game.print_board()
-print(move_result)
-print()
-print(game.get_num_captured_pieces("RED"))
-move_result = game.make_move('a9', 'h9') # Red
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('i8', 'h8') # Black
-game.print_board()
-print(move_result)
-print()
-move_result = game.make_move('a8', 'i8') # Red
-game.print_board()
-print(move_result)
-print()
-print(game.get_num_captured_pieces("RED"))
-print(game.get_num_captured_pieces("BLACK"))
+# move_result = game.make_move('i3', 'h3') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('b1', 'b3') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('i8', 'h8') # Black
+# game.print_board()
+# print(move_result)
+# print()
+# move_result = game.make_move('a8', 'i8') # Red
+# game.print_board()
+# print(move_result)
+# print()
+# print(game.get_num_captured_pieces("RED"))
+# print(game.get_num_captured_pieces("BLACK"))
 # move_result = game.make_move('i4', 'a4') # Black
 # game.print_board()
 # print(move_result)
@@ -351,6 +392,7 @@ print(game.get_num_captured_pieces("BLACK"))
 # print(move_result)
 # print()
 #
+
 #
 #
 #
