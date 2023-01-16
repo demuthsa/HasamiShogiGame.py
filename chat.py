@@ -90,6 +90,9 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return
+            
+            # Background color
+            display_surface.fill((252, 242, 183))
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 selection = (mouse_pos_to_square(event.pos))
@@ -110,9 +113,6 @@ def main():
                         print(f"Moving {source} → {destination}")
                         pygame.draw.circle(display_surface, (0, 0, 0), rect.center, SQUARE_SIZE // 2 - 10)
                     clicks = []
-
-        # Background color
-        display_surface.fill((252, 242, 183))
 
         # Iterate through the list of squares and draw each one
         for rect in squares:
